@@ -10,7 +10,9 @@ public:
 
         virtual Rank updateHeight(BinNode<T>* x)
         {
-            return x->height = std::max(BinNode<T>::stature(x->lChild),BinNode<T>::stature(x->rChild)) + 1;
+            int lc_height = BinNode<T>::stature(x->lChild);
+            int rc_height = BinNode<T>::stature(x->rChild);
+            return x->height = std::max(lc_height,rc_height) + 1;
         }
 
         virtual void updateHeightAbove(BinNode<T>* x)
@@ -51,6 +53,8 @@ public:
             if(x->lChild = S->root())
                 S->root()->parent = x;
             _size += S->size();
+
+
             updateHeightAbove(x);
 
             S->_root = nullptr;

@@ -52,10 +52,12 @@ public:
         if(!x)
             return false;
 
-        removeAt(x, _hot);
+        removeAt(x, this->_hot);
+        BinTree<T>::updateHeightAbove(this->_hot);
+        return true;
     }
     
-    static removeAt(BinNode<T>*&x,BinNode<T>*& _hot)
+    static BinNode<T> * removeAt(BinNode<T>*&x,BinNode<T>*& hot)
     {
         BinNode<T> *succ = nullptr;
         BinNode<T> *w = x;
@@ -69,13 +71,35 @@ public:
         }
         else
         {
-            succ = x->succ();
+            w = w->succ();
             T temp = x->data;
-            x->data = succ->data;
-            succ->data = temp;
+            x->data = w->data;
+            w->data = temp;
+            BinNode<T> *u = w->parent;
 
+            succ = w->rChild;
+            if(u==x)
+            {
+                u->rChild = succ;
+            }
+            else
+                u->lChild = succ;
         }
+
         hot = w->parent;
+
         if(succ)
+        {
+            succ->parent = hot;
+        }
+        else // 被删除的节点是叶节点,没有左右孩子
+        {
+            if(x->IsRoot())
+                return nullptr;
+            if(x->IsLChild())
+                hot->lChild = nullptr;
+            else
+                hot->rChild = nullptr;
+        }
     }
 };

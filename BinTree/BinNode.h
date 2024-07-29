@@ -46,7 +46,7 @@ public:
 
     bool IsRChild(){return !IsRoot() && this== this->parent->rChild;}
 
-    static Rank stature(BinNode* x){return x ? x->height : -1;}
+    static int stature(BinNode* x){return x ? x->height : -1;}
 
     BinNode* insertAsLC( T const& e)
     {
