@@ -8,4 +8,11 @@ public:
         return BinNode<T>::stature(x->lChild) - BinNode<T>::stature(x->rChild);
     }
 
+    BinNode<T>* insert(const T & e)
+    {
+        
+    }
+
+
+
 };
