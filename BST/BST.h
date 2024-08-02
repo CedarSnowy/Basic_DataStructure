@@ -29,15 +29,11 @@ public:
     {
         if(this->_size==0)
         {
-            this->_size = 1;
-            return this->_root = new BinNode<T>(e);
+            return BinTree<T>::insert(e);
         }
         BinNode<T> *x = search(e);
-        if(x)
-            return x;
+        if(x) return x;
 
-        //x = new BinNode<T>(e);
-        //x->parent = _hot;
         if(e<_hot->data)
             BinTree<T>::insert(e,_hot);
         else
@@ -101,5 +97,6 @@ public:
             else
                 hot->rChild = nullptr;
         }
+        return succ;
     }
 };
