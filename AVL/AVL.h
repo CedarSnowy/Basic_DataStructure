@@ -96,9 +96,6 @@ public:
             else
             {
                 BinNode<T>* center =  rotateAt(tallerChild(tallerChild(g)));
-                updateHeight(center->lChild);
-                updateHeight(center->rChild);
-                updateHeight(center);
                 break;
             }
 
@@ -110,7 +107,7 @@ public:
 
     bool remove(const T & e)
     {
-        
+
     }
 
 
